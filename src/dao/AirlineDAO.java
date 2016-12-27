@@ -20,7 +20,7 @@ public class AirlineDAO {
     }
 
     /** Получение списка всех заявок */
-    public List<Request> listReuests() {
+    public List<Request> listRequests() {
         Session s = HibernateUtil.getSession();
         List<Request> requests = s.createQuery("from Request", Request.class).list();
         s.close();

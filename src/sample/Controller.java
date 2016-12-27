@@ -46,7 +46,7 @@ public class Controller implements Initializable {
         flightsFiltered = new FilteredList<>(flights, s -> true);
         flightsLW.setItems(flightsFiltered);
 
-        requests = FXCollections.observableList(AirlineService.getAirlineDAO().listReuests());
+        requests = FXCollections.observableList(AirlineService.getAirlineDAO().listRequests());
         requestsFiltered = new FilteredList<>(requests, s -> true);
         requestsLW.setItems(requestsFiltered);
     }
@@ -103,7 +103,7 @@ public class Controller implements Initializable {
         Label label3 = new Label("Пункт назначения: ");
         Label label4 = new Label("Дата и время вылета: ");
         Label label5 = new Label("Тип самолета: ");
-        Label label6 = new Label("Стоимость билета: ");
+        Label label6 = new Label("Стоимость билета($): ");
         TextField text1 = new TextField();
         TextField text2 = new TextField();
         TextField text3 = new TextField();
@@ -140,35 +140,30 @@ public class Controller implements Initializable {
             setNormalStyle(text5);
             setNormalStyle(text6);
 
-            /*if (text1.getText().isEmpty()) {
+            if (!text1.getText().matches("\\d+$")) {
                 setInvalidStyle(text1);
                 valid = false;
             }
 
-            if (!text2.getText().matches("^[0-9]+(\\.[0-9]+)?$")) {
+            if (!text2.getText().matches("\\D+$")) {
                 setInvalidStyle(text2);
                 valid = false;
             }
 
-            if (!text3.getText().matches("^[1-9]\\d*$")) {
+            if (!text3.getText().matches("\\D+$")) {
                 setInvalidStyle(text3);
                 valid = false;
             }
 
-            if (!text4.getText().matches("^[1-9]\\d*$")) {
-                setInvalidStyle(text4);
-                valid = false;
-            }
-
-            if (!text5.getText().matches("^[1-9]\\d*$")) {
+            if (!text5.getText().matches("\\D+$")) {
                 setInvalidStyle(text5);
                 valid = false;
             }
 
-            if (!text6.getText().matches("^[1-9]\\d*$")) {
+            if (!text6.getText().matches("\\d+$")) {
                 setInvalidStyle(text6);
                 valid = false;
-            }*/
+            }
 
             if (!valid) {
                 ae.consume();
@@ -230,30 +225,25 @@ public class Controller implements Initializable {
             setNormalStyle(text4);
             setNormalStyle(text5);
 
-            /*if (text1.getText().isEmpty()) {
+            if (text1.getText().matches("\\D+$")) {
                 setInvalidStyle(text1);
                 valid = false;
             }
 
-            if (!text2.getText().matches("^[0-9]+(\\.[0-9]+)?$")) {
+            if (!text2.getText().matches("\\D+$")) {
                 setInvalidStyle(text2);
                 valid = false;
             }
 
-            if (!text3.getText().matches("^[1-9]\\d*$")) {
-                setInvalidStyle(text3);
-                valid = false;
-            }
-
-            if (!text4.getText().matches("^[1-9]\\d*$")) {
+            if (!text4.getText().matches("\\D+$")) {
                 setInvalidStyle(text4);
                 valid = false;
             }
 
-            if (!text5.getText().matches("^[1-9]\\d*$")) {
+            if (!text5.getText().matches("\\D+$")) {
                 setInvalidStyle(text5);
                 valid = false;
-            }*/
+            }
 
             if (!valid) {
                 ae.consume();

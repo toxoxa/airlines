@@ -85,6 +85,6 @@ public class Request {
 
     @Override
     public String toString() {
-        return this.getName();
+        return (this.getName() + " " + this.getSurname() + ", " + this.getDepartureDate());
     }
 }

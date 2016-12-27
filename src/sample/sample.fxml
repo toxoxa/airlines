@@ -52,8 +52,8 @@
         <RowConstraints />
     </rowConstraints>
     <children>
-        <ListView fx:id="flightsLW" prefHeight="213.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-        <ListView fx:id="requestsLW" prefHeight="173.0" prefWidth="200.0" GridPane.columnIndex="14" GridPane.rowIndex="8" />
+        <ListView fx:id="flightsLW" prefHeight="400.0" prefWidth="400.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+        <ListView fx:id="requestsLW" prefHeight="400.0" prefWidth="400.0" GridPane.columnIndex="14" GridPane.rowIndex="8" />
         <Button onMouseClicked="#onAddFlight" mnemonicParsing="false" prefHeight="25.0" prefWidth="199.0" text="Добавить рейс" GridPane.columnIndex="1" GridPane.rowIndex="18" />
         <Button onMouseClicked="#onDeleteFlight" mnemonicParsing="false" prefHeight="25.0" prefWidth="199.0" text="Удалить рейс" GridPane.columnIndex="1" GridPane.rowIndex="19" />
         <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="200.0" text="Button" GridPane.columnIndex="1" GridPane.rowIndex="20" />

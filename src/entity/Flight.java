@@ -98,6 +98,6 @@ public class Flight {
 
     @Override
     public String toString() {
-        return this.getDestination();
+        return (this.getDeparture() + " - " + this.getDestination() + ", " + this.getDepartureDate());
     }
 }
