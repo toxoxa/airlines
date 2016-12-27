@@ -59,8 +59,9 @@
         <TextField fx:id="destinationInput" prefHeight="27.0" prefWidth="205.0" promptText="Введите пункт назначения" GridPane.columnIndex="1" GridPane.rowIndex="11" />
         <Button onMouseClicked="#onAddFlight" mnemonicParsing="false" prefHeight="25.0" prefWidth="199.0" text="Добавить рейс" GridPane.columnIndex="1" GridPane.rowIndex="12" />
         <Button onMouseClicked="#onDeleteFlight" mnemonicParsing="false" prefHeight="25.0" prefWidth="199.0" text="Удалить рейс" GridPane.columnIndex="1" GridPane.rowIndex="13" />
-        <TextField fx:id="startInput" prefHeight="27.0" prefWidth="200.0" promptText="Введите дату и время отправления" GridPane.columnIndex="14" GridPane.rowIndex="11" />
-        <Button onMouseClicked="#onAddRequest" mnemonicParsing="false" prefHeight="25.0" prefWidth="200.0" text="Добавить завку" GridPane.columnIndex="14" GridPane.rowIndex="12" />
-        <Button onMouseClicked="#onDeleteRequest" mnemonicParsing="false" prefHeight="25.0" prefWidth="200.0" text="Удалить заявку" GridPane.columnIndex="14" GridPane.rowIndex="13" />
+        <TextField fx:id="startInput" prefHeight="27.0" prefWidth="200.0" promptText="Введите дату и время отправления" GridPane.columnIndex="14" GridPane.rowIndex="10" />
+        <Button onMouseClicked="#onAddRequest" mnemonicParsing="false" prefHeight="25.0" prefWidth="200.0" text="Добавить завку" GridPane.columnIndex="14" GridPane.rowIndex="11" />
+        <Button onMouseClicked="#onDeleteRequest" mnemonicParsing="false" prefHeight="25.0" prefWidth="200.0" text="Удалить заявку" GridPane.columnIndex="14" GridPane.rowIndex="12" />
+        <Button onMouseClicked="#onFindFlight" mnemonicParsing="false" prefHeight="25.0" prefWidth="199.0" text="Подобрать рейс" GridPane.columnIndex="14" GridPane.rowIndex="13" />
     </children>
 </GridPane>

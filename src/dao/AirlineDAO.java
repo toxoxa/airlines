@@ -63,21 +63,21 @@ public class AirlineDAO {
 
     /** Удаление рейса */
     public void deleteFlight(int id) {
-        Session s = HibernateUtil.getSession();
-        s.beginTransaction();
-        Flight flight = s.load(Flight.class, id);
-        s.delete(flight);
-        s.getTransaction().commit();
-        s.close();
+        Session session = HibernateUtil.getSession();
+        session.beginTransaction();
+        Flight flight = session.load(Flight.class, id);
+        session.delete(flight);
+        session.getTransaction().commit();
+        session.close();
     }
 
     /** Удаление рейса */
     public void deleteRequest(int id) {
-        Session s = HibernateUtil.getSession();
-        s.beginTransaction();
-        Request request = s.load(Request.class, id);
-        s.delete(request);
-        s.getTransaction().commit();
-        s.close();
+        Session session = HibernateUtil.getSession();
+        session.beginTransaction();
+        Request request = session.load(Request.class, id);
+        session.delete(request);
+        session.getTransaction().commit();
+        session.close();
     }
 }

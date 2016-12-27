@@ -9,6 +9,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
 import utils.AirlineService;
 
@@ -97,6 +98,68 @@ public class Controller implements Initializable {
         int idx = flightsLW.getSelectionModel().getSelectedIndex();
         AirlineService.getAirlineDAO().deleteFlight(id);
         flights.remove(idx);
+    }
+
+    @FXML
+    public void onFindFlight() {
+        Request request = requestsLW.getSelectionModel().getSelectedItem();
+        ObservableList<Flight> needFlight = FXCollections.observableArrayList();
+
+        if(request == null)
+            showAlertWithMSg("Вы не выбрали заявку");
+        for(int i = 0; i < flights.size(); i++) {
+            if (CompareFlightAndReq(flights.get(i), request)) {
+                needFlight.add(flights.get(i));
+                break;
+            }
+        }
+        if(needFlight.size() == 0) {
+            showAlertWithMSg("Для данной заявки туров не найдено");
+            return;
+        }
+        getShowFlightDialog(needFlight).show();
+    }
+
+    /** Возвращает диалог с таблицей нужных рейсов*/
+    private Dialog<Boolean> getShowFlightDialog(ObservableList<Flight> needFlight) {
+        Dialog<Boolean> dialog = new Dialog<>();
+        dialog.setTitle("Рейсы");
+        dialog.setResizable(true);
+
+        TableView<Flight> tableView = new TableView<>(needFlight);
+        TableColumn number = new TableColumn("Номер самолета");
+        TableColumn departure = new TableColumn("Пункт отправления");
+        TableColumn destination = new TableColumn("Пункт назначения");
+        TableColumn departureDate = new TableColumn("Дата и время отправления");
+        number.setCellValueFactory(new PropertyValueFactory<Flight, String>("number"));
+        departure.setCellValueFactory(new PropertyValueFactory<Flight, String>("departure"));
+        destination.setCellValueFactory(new PropertyValueFactory<Flight, String>("destination"));
+        departureDate.setCellValueFactory(new PropertyValueFactory<Flight, String>("departureDate"));
+
+        tableView.getColumns().addAll(number, departure, destination, departureDate);;
+        GridPane grid = new GridPane();
+        grid.add(tableView, 1, 1);
+        dialog.getDialogPane().setContent(grid);
+        ButtonType buttonTypeOk = new ButtonType("Ok", ButtonBar.ButtonData.OK_DONE);
+        dialog.getDialogPane().getButtonTypes().add(buttonTypeOk);
+
+        return dialog;
+    }
+
+    /** Сравнение, подходит ли рейс заявке*/
+    private boolean CompareFlightAndReq(Flight flight, Request request){
+        return(flight.getDeparture().toLowerCase().equals(request.getDeparture().toLowerCase()) &&
+                flight.getDestination().toLowerCase().equals(request.getDestination().toLowerCase()) &&
+                flight.getDepartureDate().toLowerCase().equals(request.getDepartureDate().toLowerCase()));
+    }
+
+    /** Выводит сообщение об ошибке */
+    private void showAlertWithMSg(String msg) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Внимание");
+        alert.setHeaderText("Что-то пошло не так");
+        alert.setContentText(msg);
+        alert.show();
     }
 
     /** Событие удаления заявки */
