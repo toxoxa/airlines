@@ -48,56 +48,24 @@ public class Flight {
         return id;
     }
 
-    public int getNumber() {
-        return number;
-    }
-
-    public void setNumber(int number) {
-        this.number = number;
-    }
-
     public String getDeparture() {
         return departure;
-    }
-
-    public void setDeparture(String departure) {
-        this.departure = departure;
     }
 
     public String getDestination() {
         return destination;
     }
 
-    public void setDestination(String destination) {
-        this.destination = destination;
-    }
-
     public String getDepartureDate() {
         return departureDate;
-    }
-
-    public void setDepartureDate(String departureDate) {
-        this.departureDate = departureDate;
-    }
-
-    public String getPlaneType() {
-        return planeType;
-    }
-
-    public void setPlaneType(String planeType) {
-        this.planeType = planeType;
     }
 
     public int getCost() {
         return cost;
     }
 
-    public void setCost(int cost) {
-        this.cost = cost;
-    }
-
     @Override
     public String toString() {
-        return (this.getDeparture() + " - " + this.getDestination() + ", " + this.getDepartureDate());
+        return (this.getDeparture() + " - " + this.getDestination() + ", " + this.getDepartureDate() + ", цена: " + this.getCost() + "$");
     }
 }

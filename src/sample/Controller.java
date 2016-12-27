@@ -9,11 +9,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
-import org.hibernate.Session;
 import utils.AirlineService;
-import utils.HibernateUtil;
 
 import java.net.URL;
 import java.util.Optional;
@@ -40,6 +37,10 @@ public class Controller implements Initializable {
     /** Список заявок с фильтрацией */
     private FilteredList<Request> requestsFiltered;
 
+    /** Контрол поиска по дате и времени отправления */
+    @FXML
+    private TextField startInput;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         flights = FXCollections.observableList(AirlineService.getAirlineDAO().listFlights());
@@ -49,6 +50,9 @@ public class Controller implements Initializable {
         requests = FXCollections.observableList(AirlineService.getAirlineDAO().listRequests());
         requestsFiltered = new FilteredList<>(requests, s -> true);
         requestsLW.setItems(requestsFiltered);
+
+        startInput.textProperty().addListener((observableValue, oldValue, newValue) ->
+                requestsFiltered.setPredicate(newValue.isEmpty() ? s -> true : s -> s.getDepartureDate().contains(newValue)));
     }
 
     /** Событие добавления рейса */
@@ -181,7 +185,7 @@ public class Controller implements Initializable {
         return dialog;
     }
 
-    /** Дилог добавления рейса */
+    /** Дилог добавления заявки */
     private Dialog<Request> getAddRequestDialog() {
         Dialog<Request> dialog = new Dialog<>();
         dialog.setTitle("Добавление");
@@ -225,7 +229,7 @@ public class Controller implements Initializable {
             setNormalStyle(text4);
             setNormalStyle(text5);
 
-            if (text1.getText().matches("\\D+$")) {
+            if (!text1.getText().matches("\\D+$")) {
                 setInvalidStyle(text1);
                 valid = false;
             }

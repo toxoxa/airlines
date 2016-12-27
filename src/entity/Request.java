@@ -47,44 +47,24 @@ public class Request {
         return departure;
     }
 
-    public void setDeparture(String departure) {
-        this.departure = departure;
-    }
-
     public String getDestination() {
         return destination;
-    }
-
-    public void setDestination(String destination) {
-        this.destination = destination;
     }
 
     public String getDepartureDate() {
         return departureDate;
     }
 
-    public void setDepartureDate(String departureDate) {
-        this.departureDate = departureDate;
-    }
-
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getSurname() {
         return surname;
     }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
     @Override
     public String toString() {
-        return (this.getName() + " " + this.getSurname() + ", " + this.getDepartureDate());
+        return (this.getName() + " " + this.getSurname() + ", " + this.getDeparture() + " - " + this.getDestination() + ", " + this.getDepartureDate());
     }
 }
