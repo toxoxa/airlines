@@ -48,6 +48,10 @@ public class Flight {
         return id;
     }
 
+    public int getNumber() {
+        return number;
+    }
+
     public String getDeparture() {
         return departure;
     }
@@ -66,6 +70,6 @@ public class Flight {
 
     @Override
     public String toString() {
-        return (this.getDeparture() + " - " + this.getDestination() + ", " + this.getDepartureDate() + ", цена: " + this.getCost() + "$");
+        return ("№" + this.getNumber() + ": " + this.getDeparture() + " - " + this.getDestination() + ", " + this.getDepartureDate() + ", цена: " + this.getCost() + "$");
     }
 }

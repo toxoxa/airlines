@@ -37,9 +37,17 @@ public class Controller implements Initializable {
     /** Список заявок с фильтрацией */
     private FilteredList<Request> requestsFiltered;
 
-    /** Контрол поиска по дате и времени отправления */
+    /** Контрол поиска заявки по дате и времени отправления */
     @FXML
     private TextField startInput;
+
+    /** Контрол поиска рейса по пункту отправления */
+    @FXML
+    private TextField departureInput;
+
+    /** Контрол поиска рейса по пункту отправления */
+    @FXML
+    private TextField destinationInput;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -53,6 +61,11 @@ public class Controller implements Initializable {
 
         startInput.textProperty().addListener((observableValue, oldValue, newValue) ->
                 requestsFiltered.setPredicate(newValue.isEmpty() ? s -> true : s -> s.getDepartureDate().contains(newValue)));
+
+        departureInput.textProperty().addListener((observableValue, oldValue, newValue) ->
+                flightsFiltered.setPredicate(newValue.isEmpty() ? s -> true : s -> s.getDeparture().contains(newValue)));
+        destinationInput.textProperty().addListener((observableValue, oldValue, newValue) ->
+                flightsFiltered.setPredicate(newValue.isEmpty() ? s -> true : s -> s.getDestination().contains(newValue)));
     }
 
     /** Событие добавления рейса */
